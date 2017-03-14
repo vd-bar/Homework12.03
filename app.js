@@ -10,17 +10,27 @@ function longshoose(k) {
 }
 function interval() {
 
-    var from=-100;
-    var to=100;
+    var from=valid('Введите от:', true),to;
+    do{
+        to=valid('Введите до:',true);
+    }while (to<=from);
 
     return {from,to};
 }
+function valid(message,booling) {
+    var num;
+    do{
+        num=parseInt(prompt(message));
+    }while ((booling?false:num<=0)||isNaN(num));
+    return num;
+
+};
 function insertnumber (from,to) {
     var num=Math.floor(from+Math.random()*(to-from));
     return num;
 
 }
-arr=(longshoose(prompt('Введите длину массива')));
+arr=(longshoose(valid('Введите длину массива')));
 console.log(arr);
 console.log(bubble(arr));
 function bubble (arr) {
